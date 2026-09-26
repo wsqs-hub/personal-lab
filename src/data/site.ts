@@ -187,10 +187,9 @@ export const site = {
     slogan: "Building AI systems from molecular structure and physical descriptors to property prediction, screening and intelligent decision-making.",
     github: "GitHub",                                // GitHub 链接文字
     githubUrl: "https://github.com/wsqs-hub",        // GitHub 链接地址
-    wechat: "微信公众号",                              // 公众号链接文字
-    wechatName: "AI+化工与材料智能实践",                // 公众号名称（鼠标悬停可见）
-    email: "Email",                                  // 邮箱链接文字
-    emailAddress: "2592123736@qq.com",               // 邮箱地址
+    wechat: "微信公众号：AI+化工与材料智能实践",        // 公众号（页脚直接显示名字）
+    email: "Email: 2592123736@qq.com",               // 邮箱（页脚直接显示地址）
+    emailAddress: "2592123736@qq.com",               // 邮箱地址（点击发邮件用）
     disclaimer: "Disclaimer",
     copyright: "© 2026 Weishiqiang",
     builtWith: "Built with Astro · Deployed on GitHub Pages",
