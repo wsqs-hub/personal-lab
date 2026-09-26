@@ -29,7 +29,7 @@ const projects = (await getCollection('projects')).sort((a, b) =>
         const st = statusMap[p.data.status];
         const cat = categoryMap[p.data.category];
         return (
-          <a class="pcard" data-cat={p.data.category} href={`${base}lab/${p.id}/`}>
+          <a class="pcard" data-cat={p.data.category} href={`${base}/lab/${p.id}/`}>
             <div class="top"><h4>{p.data.title}</h4><span class={`badge ${st.cls}`}><i></i>{st.label}</span></div>
             <div style="margin-top:10px"><span class="pipe">{p.data.pipeline}</span></div>
             <div class="meta">

@@ -29,7 +29,7 @@ const updates = projects
         {site.hero.posEn}
       </div>
       <div class="btns">
-        <a class="btn btn-main" href={`${base}lab/`}>{site.hero.btnLab}</a>
+        <a class="btn btn-main" href={`${base}/lab/`}>{site.hero.btnLab}</a>
         <a class="btn btn-ghost" href="https://github.com/wsqs-hub" target="_blank" rel="noopener">{site.hero.btnGithub}</a>
       </div>
       <div class="domains">
@@ -41,19 +41,19 @@ const updates = projects
       <div class="sec-head"><h2>{site.whatIBuild.title}</h2><span class="zh">{site.whatIBuild.titleZh}</span></div>
       <div class="cap-grid">
         {site.whatIBuild.cards.map((c, i) => (
-          <a class="cap" href={`${base}lab/`}><span class="no">{String(i + 1).padStart(2, '0')}</span><h4>{c.title}</h4><div class="kw">{c.keywords.map((k) => <span>{k}</span>)}</div></a>
+          <a class="cap" href={`${base}/lab/`}><span class="no">{String(i + 1).padStart(2, '0')}</span><h4>{c.title}</h4><div class="kw">{c.keywords.map((k) => <span>{k}</span>)}</div></a>
         ))}
       </div>
     </section>
 
     <section class="sec">
-      <div class="sec-head"><h2>{site.featured.title}</h2><span class="zh">{site.featured.titleZh}</span><a class="more" href={`${base}lab/`}>{site.featured.viewAll}</a></div>
+      <div class="sec-head"><h2>{site.featured.title}</h2><span class="zh">{site.featured.titleZh}</span><a class="more" href={`${base}/lab/`}>{site.featured.viewAll}</a></div>
       <div class="feat-grid">
         {featured.map((p) => {
           const st = statusMap[p.data.status];
           const cat = categoryMap[p.data.category];
           return (
-            <a class="fcard" href={`${base}lab/${p.id}/`}>
+            <a class="fcard" href={`${base}/lab/${p.id}/`}>
               <span class="no">{String(p.data.order).padStart(2, '0')}</span>
               <h4>{p.data.title}</h4>
               <span class="pipe">{p.data.pipeline}</span>
@@ -70,7 +70,7 @@ const updates = projects
     </section>
 
     <section class="sec">
-      <div class="sec-head"><h2>{site.updates.title}</h2><span class="zh">{site.updates.titleZh}</span><a class="more" href={`${base}lab/`}>{site.updates.viewLab}</a></div>
+      <div class="sec-head"><h2>{site.updates.title}</h2><span class="zh">{site.updates.titleZh}</span><a class="more" href={`${base}/lab/`}>{site.updates.viewLab}</a></div>
       <div class="upd-box">
         {updates.map((u) => (
           <div class="row"><span class="d">{u.date}</span><span class="p">{u.project}</span><span class="n">{u.note}</span></div>

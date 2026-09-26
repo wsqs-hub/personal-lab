@@ -20,7 +20,7 @@ const catLabel = {
 
     <div class="note-grid" style="margin-top:24px">
       {notes.map((n) => (
-        <a class="ncard" href={`${base}notes/${n.id}/`}>
+        <a class="ncard" href={`${base}/notes/${n.id}/`}>
           <span class="cat">{catLabel[n.data.category]}</span>
           <h4>{n.data.title}</h4>
           <p>{n.body.slice(0, 80).replace(/[#>*\n]/g, ' ').trim()}…</p>

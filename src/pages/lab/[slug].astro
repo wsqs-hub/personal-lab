@@ -14,7 +14,7 @@ const base = import.meta.env.BASE_URL;
 const projects = await getCollection('projects');
 const project = projects.find((p) => p.id === slug);
 
-if (!project) return Astro.redirect(`${base}lab/`);
+if (!project) return Astro.redirect(`${base}/lab/`);
 
 const st = statusMap[project.data.status];
 const cat = categoryMap[project.data.category];
@@ -24,7 +24,7 @@ const data = project.data;
 <Base title={data.title} description={data.summary}>
   <div class="page">
     <div class="proj">
-      <a class="back" href={`${base}lab/`}>{site.project.backToLab}</a>
+      <a class="back" href={`${base}/lab/`}>{site.project.backToLab}</a>
       <h1>{data.title}</h1>
       <div style="margin-top:14px"><span class="pipe">{data.pipeline}</span></div>
       <div class="tags">
