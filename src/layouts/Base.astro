@@ -18,7 +18,7 @@ const active = (href: string) => {
   return path.startsWith(h);
 };
 
-const fullTitle = title ? `${title} · Weishiqiang` : 'Weishiqiang · Chemical & Materials AI Lab';
+const fullTitle = title ? `${title} · ${site.hero.nameEn}` : `${site.hero.nameEn} · Chemical & Materials AI Lab`;
 const desc = description || '魏世强的化工与材料 AI 个人技术实验室：分子物性预测、反应产率预测、聚合物性质预测，以及从分子表征到模型部署的完整能力链。';
 ---
 
@@ -56,9 +56,9 @@ const desc = description || '魏世强的化工与材料 AI 个人技术实验�
         <div class="foot-slogan">{site.footer.slogan}</div>
       </div>
       <nav class="foot-links">
-        <a href="https://github.com/wsqs-hub" target="_blank" rel="noopener">{site.footer.github}</a>
-        <a href={`${base}/about/`} title="公众号二维码占位">{site.footer.wechat}</a>
-        <a href="mailto:weishiqiang2023@163.com">{site.footer.email}</a>
+        <a href={site.footer.githubUrl} target="_blank" rel="noopener">{site.footer.github}</a>
+        <a href={`${base}/about/`} title={site.footer.wechatName}>{site.footer.wechat}</a>
+        <a href={`mailto:${site.footer.emailAddress}`}>{site.footer.email}</a>
         <a href={`${base}/about/`}>{site.footer.disclaimer}</a>
       </nav>
     </div>

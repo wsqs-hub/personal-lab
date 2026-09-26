@@ -39,7 +39,6 @@ const updates = projects
 
     <section class="sec">
       <div class="sec-head"><h2>{site.whatIBuild.title}</h2><span class="zh">{site.whatIBuild.titleZh}</span></div>
-      <p class="sec-sub">{site.whatIBuild.subtitle}</p>
       <div class="cap-grid">
         {site.whatIBuild.cards.map((c, i) => (
           <a class="cap" href={`${base}lab/`}><span class="no">{String(i + 1).padStart(2, '0')}</span><h4>{c.title}</h4><div class="kw">{c.keywords.map((k) => <span>{k}</span>)}</div></a>
@@ -49,7 +48,6 @@ const updates = projects
 
     <section class="sec">
       <div class="sec-head"><h2>{site.featured.title}</h2><span class="zh">{site.featured.titleZh}</span><a class="more" href={`${base}lab/`}>{site.featured.viewAll}</a></div>
-      <p class="sec-sub">{site.featured.subtitle}</p>
       <div class="feat-grid">
         {featured.map((p) => {
           const st = statusMap[p.data.status];
