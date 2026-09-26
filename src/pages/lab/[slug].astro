@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import { statusMap, categoryMap } from '../../lib/catalog';
+import { site } from '../../data/site';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -23,15 +24,15 @@ const data = project.data;
 <Base title={data.title} description={data.summary}>
   <div class="page">
     <div class="proj">
-      <a class="back" href={`${base}lab/`}>← Back to Lab</a>
+      <a class="back" href={`${base}lab/`}>{site.project.backToLab}</a>
       <h1>{data.title}</h1>
       <div style="margin-top:14px"><span class="pipe">{data.pipeline}</span></div>
       <div class="tags">
         <span class={`badge ${st.cls}`}><i></i>{st.label}</span>
         <span class="badge b-line">{cat}</span>
-        <span class="badge b-line">Data: {data.dataSource}</span>
-        <span class="badge b-line">Code: {data.code}</span>
-        <span class="badge b-line">Demo: {data.demo}</span>
+        <span class="badge b-line">{site.project.data}: {data.dataSource}</span>
+        <span class="badge b-line">{site.project.code}: {data.code}</span>
+        <span class="badge b-line">{site.project.demo}: {data.demo}</span>
       </div>
       <div class="dates">
         <span>Started: {data.started}</span>
@@ -39,25 +40,25 @@ const data = project.data;
       </div>
       <div class="btns">
         {data.github
-          ? <a class="btn btn-ghost" href={data.github} target="_blank" rel="noopener">View Code ↗</a>
-          : <span class="btn btn-ghost" style="cursor:default;opacity:.6">Code: Coming Soon</span>}
+          ? <a class="btn btn-ghost" href={data.github} target="_blank" rel="noopener">{site.project.viewCode}</a>
+          : <span class="btn btn-ghost" style="cursor:default;opacity:.6">{site.project.codeComing}</span>}
         {data.demoUrl
-          ? <a class="btn btn-ghost" href={data.demoUrl} target="_blank" rel="noopener">Try Demo</a>
-          : <span class="btn btn-ghost" style="cursor:default;opacity:.6">Demo: Coming Soon</span>}
+          ? <a class="btn btn-ghost" href={data.demoUrl} target="_blank" rel="noopener">{site.project.tryDemo}</a>
+          : <span class="btn btn-ghost" style="cursor:default;opacity:.6">{site.project.demoComing}</span>}
       </div>
 
       <div class="proj-content" set:html={project.body}></div>
 
       {data.updateLog.length > 0 && (
         <div class="ulog">
-          <h5>UPDATE LOG</h5>
+          <h5>{site.project.updateLog}</h5>
           {data.updateLog.map((u) => (
             <div class="row"><span class="d">{u.date}</span><span>{u.note}</span></div>
           ))}
         </div>
       )}
 
-      <div class="disc">Disclaimer — Projects presented on this website are independent personal projects based on public, synthetic, or independently generated data. No proprietary data, code, models, confidential information, or business-sensitive information from my employer is included.</div>
+      <div class="disc">{site.project.disclaimer}</div>
     </div>
   </div>
 </Base>

@@ -1,92 +1,22 @@
 ---
 import Base from '../layouts/Base.astro';
-const base = import.meta.env.BASE_URL;
+import { site } from '../data/site';
 ---
 
 <Base title="Methods">
   <div class="narrow">
-    <h1>Engineering AI Methods</h1>
-    <p class="lead">我怎么把化工问题变成 AI 问题 —— 公开我的技术思维框架。点击每个板块展开全文。</p>
+    <h1>{site.methods.title}</h1>
+    <p class="lead">{site.methods.subtitle}</p>
 
-    <details class="msec" open>
-      <summary><span class="n">§ 1</span><h3>Problem Definition · 问题定义</h3><span class="arr">▶</span></summary>
-      <div class="body">
-        <p>拿到业务需求的第一件事不是选模型，而是判断问题类型：</p>
-        <ul>
-          <li><b>Prediction</b>——要的是数值（性质、产率、负荷）？数据量和性质连续性决定回归难度。</li>
-          <li><b>Classification</b>——要的是判断（合格/不合格、异常/正常）？小心类别不平衡。</li>
-          <li><b>Optimization</b>——要的是方案（配方、排产、操作点）？先确认目标函数与约束。</li>
-          <li><b>Screening</b>——要的是排序？评估指标应该是 Top-K 命中率而非全局 R²。</li>
-        </ul>
-        <p>常见误判：把 Screening 问题建成 Prediction 然后只追 R²——用户要的其实是排序质量。</p>
-      </div>
-    </details>
-
-    <details class="msec">
-      <summary><span class="n">§ 2</span><h3>Representation · 表示层</h3><span class="arr">▶</span></summary>
-      <div class="body">
-        <p>化工 AI 的第一专业壁垒。化学对象怎么变成模型输入：</p>
-        <ul>
-          <li><b>分子指纹</b>——快、稳、基线首选，但丢失电子与三维信息。</li>
-          <li><b>描述符</b>——RDKit 结构描述符 + xTB 电子描述符（HOMO/LUMO/偶极/电荷），电子效应主导的性质必须补这一层。</li>
-          <li><b>分子图</b>——GNN 直接学习表示，数据量足够时上限最高。</li>
-          <li><b>语言模型嵌入</b>——polyBERT 一类，聚合物/大分子场景的强基线。</li>
-          <li><b>过程特征</b>——时序统计量、机理变量、工况上下文。</li>
-        </ul>
-      </div>
-    </details>
-
-    <details class="msec">
-      <summary><span class="n">§ 3</span><h3>Modeling · 建模</h3><span class="arr">▶</span></summary>
-      <div class="body">
-        <p>一句话：<b>数据量决定模型复杂度上限，问题性质决定模型类别。</b></p>
-        <ul>
-          <li>几百~几千样本、表格特征 → XGBoost / LightGBM，很难被打败。</li>
-          <li>几千~几万分子图 → GNN（chemprop 类 MPNN 是可靠起点）。</li>
-          <li>时序过程数据 → 先统计模型与树模型，再上深度时序模型。</li>
-          <li>上神经网络：表示学习本身就是需求（图/序列/图像）时。</li>
-        </ul>
-      </div>
-    </details>
-
-    <details class="msec">
-      <summary><span class="n">§ 4</span><h3>Validation · 验证</h3><span class="arr">▶</span></summary>
-      <div class="body">
-        <p>验证设计比模型更重要。化工场景四大坑：</p>
-        <ul>
-          <li><b>Data Leakage</b>——同一分子的近缘拆到训练/测试两侧（scaffold split vs random split）。</li>
-          <li><b>Experimental Bias</b>——文献数据只报道成功案例，分布天然偏倚。</li>
-          <li><b>Distribution Shift</b>——上线后的化学空间和训练集不一样，必须监控适用域。</li>
-          <li><b>Overfitting</b>——小数据 + 大模型 = 精美记背。误差分析比单看 R² 诚实得多。</li>
-        </ul>
-      </div>
-    </details>
-
-    <details class="msec">
-      <summary><span class="n">§ 5</span><h3>Optimization · 优化与决策</h3><span class="arr">▶</span></summary>
-      <div class="body">
-        <p>从「模型」到「价值」的最后一公里：</p>
-        <ul>
-          <li><b>候选空间明确</b>（分子库/配方库）→ 批量预测 + 排序 = 虚拟筛选。</li>
-          <li><b>候选空间连续</b> → 逆向优化：遗传算法 / SLSQP / 贝叶斯优化。</li>
-          <li><b>实验成本高</b> → 主动学习：用模型不确定性挑下一批最值得做的实验。</li>
-          <li><b>多目标冲突</b> → 多目标优化 + Pareto 前沿，把决策权交回工程师。</li>
-        </ul>
-      </div>
-    </details>
-
-    <details class="msec">
-      <summary><span class="n">§ 6</span><h3>Deployment · 部署</h3><span class="arr">▶</span></summary>
-      <div class="body">
-        <p>模型在 Notebook 里不算完成。按用户形态选部署路径：</p>
-        <ul>
-          <li><b>给自己用</b> → 脚本 + 定时任务。</li>
-          <li><b>给同事用</b> → 局域网 API（FastAPI）+ 简单前端。</li>
-          <li><b>给世界看</b> → Hugging Face Spaces + Gradio，零运维公开 Demo。</li>
-          <li><b>上线后</b> → 跟踪预测分布漂移、定期回测、建立再训练机制。</li>
-        </ul>
-        <p>本站所有 Demo 走 HF Spaces——网站（Astro 静态）与计算（Gradio）解耦。</p>
-      </div>
-    </details>
+    {site.methods.sections.map((s, i) => (
+      <details class="msec" open={i === 0}>
+        <summary><span class="n">{s.n}</span><h3>{s.title}</h3><span class="arr">▶</span></summary>
+        <div class="body">
+          <p set:html={s.intro}></p>
+          <ul>{s.items.map((it) => <li set:html={it} />)}</ul>
+          {s.outro && <p set:html={s.outro}></p>}
+        </div>
+      </details>
+    ))}
   </div>
 </Base>

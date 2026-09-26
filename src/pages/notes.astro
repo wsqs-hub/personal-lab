@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import { site } from '../data/site';
 
 const base = import.meta.env.BASE_URL;
 const notes = (await getCollection('notes')).sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
@@ -15,8 +16,8 @@ const catLabel = {
 
 <Base title="Notes">
   <div class="narrow" style="max-width:1060px">
-    <h1>Notes</h1>
-    <p class="lead">长期技术资产，不是流量博客。重要文章站内存档，全文可跳转微信公众号。</p>
+    <h1>{site.notes.title}</h1>
+    <p class="lead">{site.notes.subtitle}</p>
 
     <div class="note-grid" style="margin-top:24px">
       {notes.map((n) => (

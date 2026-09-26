@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import { statusMap, categoryMap } from '../lib/catalog';
+import { site } from '../data/site';
 
 const base = import.meta.env.BASE_URL;
 const projects = (await getCollection('projects')).sort((a, b) =>
@@ -12,15 +13,15 @@ const projects = (await getCollection('projects')).sort((a, b) =>
 <Base title="Lab">
   <div class="page">
     <div style="padding:56px 0 8px">
-      <h1 style="font-size:40px;font-weight:800;font-family:var(--font-serif)">Lab</h1>
-      <div style="color:var(--ink-2);margin-top:8px;font-size:14.5px"><b>独立实验与开源研究</b> · Independent experiments &amp; open-source studies — 持续迭代中</div>
+      <h1 style="font-size:40px;font-weight:800;font-family:var(--font-serif)">{site.lab.title}</h1>
+      <div style="color:var(--ink-2);margin-top:8px;font-size:14.5px"><b>{site.lab.subtitleZh}</b> · {site.lab.subtitle}</div>
     </div>
 
     <div class="filters">
-      <button data-f="all" class="on">All</button>
-      <button data-f="molecular-ai">Molecular AI</button>
-      <button data-f="reaction-ai">Reaction AI</button>
-      <button data-f="polymer-ai">Polymer AI</button>
+      <button data-f="all" class="on">{site.lab.filters[0]}</button>
+      <button data-f="molecular-ai">{site.lab.filters[1]}</button>
+      <button data-f="reaction-ai">{site.lab.filters[2]}</button>
+      <button data-f="polymer-ai">{site.lab.filters[3]}</button>
     </div>
 
     <div id="projList">
@@ -42,7 +43,7 @@ const projects = (await getCollection('projects')).sort((a, b) =>
       })}
     </div>
 
-    <div style="padding:30px 0 10px;font-size:12.5px;color:var(--ink-3)">未来项目将在此追加：GNN 构效关系专题 · 贝叶斯优化 / 主动学习专题。</div>
+    <div style="padding:30px 0 10px;font-size:12.5px;color:var(--ink-3)">{site.lab.footerNote}</div>
   </div>
 
   <script is:inline>

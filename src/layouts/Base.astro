@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { site } from '../data/site';
 
 interface Props {
   title?: string;
@@ -34,13 +35,13 @@ const desc = description || '魏世强的化工与材料 AI 个人技术实验�
 <body>
   <header class="nav">
     <div class="nav-in">
-      <a class="logo" href={`${base}/`}>Weishiqiang · <em>Chem &amp; Materials AI Lab</em></a>
+      <a class="logo" href={`${base}/`}>{site.nav.logo}</a>
       <nav class="nav-links">
-        <a href={`${base}/`} class:list={[active(`${base}/`) && 'active']}>Home</a>
-        <a href={`${base}/lab/`} class:list={[active(`${base}/lab/`) && 'active']}>Lab</a>
-        <a href={`${base}/methods/`} class:list={[active(`${base}/methods/`) && 'active']}>Methods</a>
-        <a href={`${base}/notes/`} class:list={[active(`${base}/notes/`) && 'active']}>Notes</a>
-        <a href={`${base}/about/`} class:list={[active(`${base}/about/`) && 'active']}>About</a>
+        <a href={`${base}/`} class:list={[active(`${base}/`) && 'active']}>{site.nav.home}</a>
+        <a href={`${base}/lab/`} class:list={[active(`${base}/lab/`) && 'active']}>{site.nav.lab}</a>
+        <a href={`${base}/methods/`} class:list={[active(`${base}/methods/`) && 'active']}>{site.nav.methods}</a>
+        <a href={`${base}/notes/`} class:list={[active(`${base}/notes/`) && 'active']}>{site.nav.notes}</a>
+        <a href={`${base}/about/`} class:list={[active(`${base}/about/`) && 'active']}>{site.nav.about}</a>
       </nav>
       <a class="icon-btn" href="https://github.com/wsqs-hub" target="_blank" rel="noopener" title="GitHub">GH</a>
       <button class="icon-btn" id="themeBtn" title="切换明暗主题">☾</button>
@@ -52,19 +53,19 @@ const desc = description || '魏世强的化工与材料 AI 个人技术实验�
   <footer>
     <div class="foot-in">
       <div>
-        <div class="foot-brand">Weishiqiang · <em>Chem &amp; Materials AI Lab</em></div>
-        <div class="foot-slogan">Building AI systems from molecular structure and physical descriptors to property prediction, screening and intelligent decision-making.</div>
+        <div class="foot-brand">{site.nav.logo}</div>
+        <div class="foot-slogan">{site.footer.slogan}</div>
       </div>
       <nav class="foot-links">
-        <a href="https://github.com/wsqs-hub" target="_blank" rel="noopener">GitHub</a>
-        <a href={`${base}/about/`} title="公众号二维码占位">微信公众号</a>
-        <a href="mailto:weishiqiang2023@163.com">Email</a>
-        <a href={`${base}/about/`}>Disclaimer</a>
+        <a href="https://github.com/wsqs-hub" target="_blank" rel="noopener">{site.footer.github}</a>
+        <a href={`${base}/about/`} title="公众号二维码占位">{site.footer.wechat}</a>
+        <a href="mailto:weishiqiang2023@163.com">{site.footer.email}</a>
+        <a href={`${base}/about/`}>{site.footer.disclaimer}</a>
       </nav>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 Weishiqiang</span>
-      <span>Built with Astro · Deployed on GitHub Pages</span>
+      <span>{site.footer.copyright}</span>
+      <span>{site.footer.builtWith}</span>
     </div>
   </footer>
 
