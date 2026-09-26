@@ -7,7 +7,7 @@
 export const site = {
   // ============ 顶部导航栏 ============
   nav: {
-    logo: "Weishiqiang · Chem & Materials AI Lab", // 左上角站名
+    logo: "Wiggins · Chem & Materials AI Lab", // 左上角站名
     home: "Home",
     lab: "Lab",
     methods: "Methods",
@@ -19,7 +19,7 @@ export const site = {
   hero: {
     tagline: "// PERSONAL AI LAB",              // 姓名上方的小字
     name: "魏世强",                              // 大标题
-    nameEn: "Weishiqiang",
+    nameEn: "Wiggins",
     role: "Chemical & Materials AI Engineer",   // 头衔
     posZh: "从分子结构和物理描述符出发，构建面向性质预测、分子筛选与智能决策的 AI 系统。", // 定位句（中文）
     posEn: "Building AI systems from molecular structure and physical descriptors to property prediction, screening and intelligent decision-making.", // 定位句（英文）
@@ -32,7 +32,6 @@ export const site = {
   whatIBuild: {
     title: "What I Build",
     titleZh: "我的技术能力地图",
-    subtitle: "不是工具清单，而是问题能力——每一类能力都能在 Lab 里找到对应的实验作品。",
     cards: [
       { title: "Molecular AI", keywords: ["Descriptors", "XTB", "QSAR", "GNN", "Property Pred."] },
       { title: "Materials AI", keywords: ["Polymer Pred.", "Structure–Property", "Tg", "Optical"] },
