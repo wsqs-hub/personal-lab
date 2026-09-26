@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('notes');
+  return notes.map((n) => ({ params: { slug: n.id } }));
+}
+
+const { slug } = Astro.params;
+const base = import.meta.env.BASE_URL;
+const notes = await getCollection('notes');
+const note = notes.find((n) => n.id === slug);
+
+if (!note) return Astro.redirect(`${base}notes/`);
+
+const catLabel = {
+  'ai-chemistry': 'AI × CHEMISTRY',
+  'ai-engineering': 'AI × ENGINEERING',
+  'experiments': 'EXPERIMENTS',
+  'thinking': 'PERSONAL THINKING',
+};
+---
+
+<Base title={note.data.title}>
+  <div class="page">
+    <article class="article">
+      <a class="back" href={`${base}notes/`} style="font-size:13px;color:var(--ink-3);text-decoration:none;margin-bottom:22px;display:inline-block">← Back to Notes</a>
+      <div class="cat">{catLabel[note.data.category]}</div>
+      <h1>{note.data.title}</h1>
+      <div class="meta"><span>{note.data.date}</span></div>
+      <div class="body" set:html={note.body}></div>
+      {note.data.wechatUrl && (
+        <a class="btn btn-ghost" style="margin-top:26px" href={note.data.wechatUrl} target="_blank" rel="noopener">Read Full Article on 微信公众号 →</a>
+      )}
+    </article>
+  </div>
+</Base>

@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { statusMap, categoryMap } from '../lib/catalog';
+
+const base = import.meta.env.BASE_URL;
+const projects = (await getCollection('projects')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+const featured = projects.filter((p) => p.data.featured);
+
+// 聚合所有项目的更新日志，按日期倒序取前 5 条
+const updates = projects
+  .flatMap((p) => p.data.updateLog.map((u) => ({ ...u, project: p.data.title })))
+  .sort((a, b) => (a.date < b.date ? 1 : -1))
+  .slice(0, 5);
+---
+
+<Base>
+  <div class="page">
+    <section class="hero">
+      <div class="hello">// PERSONAL AI LAB</div>
+      <h1>魏世强</h1>
+      <div class="en">Weishiqiang</div>
+      <div class="role">Chemical &amp; Materials AI Engineer</div>
+      <div class="pos">
+        <span class="zh">从分子结构和物理描述符出发，构建面向性质预测、分子筛选与智能决策的 AI 系统。</span>
+        Building AI systems from molecular structure and physical descriptors to property prediction, screening and intelligent decision-making.
+      </div>
+      <div class="btns">
+        <a class="btn btn-main" href={`${base}lab/`}>Explore Lab →</a>
+        <a class="btn btn-ghost" href="https://github.com/wsqs-hub" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <div class="domains">
+        <span>Molecular AI</span><span>Materials AI</span><span>Process AI</span><span>Optimization</span><span>AI Engineering</span>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="sec-head"><h2>What I Build</h2><span class="zh">我的技术能力地图</span></div>
+      <p class="sec-sub">不是工具清单，而是问题能力——每一类能力都能在 Lab 里找到对应的实验作品。</p>
+      <div class="cap-grid">
+        <a class="cap" href={`${base}lab/`}><span class="no">01</span><h4>Molecular AI</h4><div class="kw"><span>Descriptors</span><span>XTB</span><span>QSAR</span><span>GNN</span><span>Property Pred.</span></div></a>
+        <a class="cap" href={`${base}lab/`}><span class="no">02</span><h4>Materials AI</h4><div class="kw"><span>Polymer Pred.</span><span>Structure–Property</span><span>Tg</span><span>Optical</span></div></a>
+        <a class="cap" href={`${base}lab/`}><span class="no">03</span><h4>Reaction AI</h4><div class="kw"><span>Yield Pred.</span><span>Catalysis</span><span>DRFP</span><span>GNN</span></div></a>
+        <a class="cap" href={`${base}lab/`}><span class="no">04</span><h4>Process AI</h4><div class="kw"><span>Time-Series</span><span>Anomaly Det.</span><span>Scheduling</span><span>Modeling</span></div></a>
+        <a class="cap" href={`${base}lab/`}><span class="no">05</span><h4>Intelligent Design</h4><div class="kw"><span>Active Learning</span><span>Inverse Opt.</span><span>Decision</span></div></a>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="sec-head"><h2>Featured Lab</h2><span class="zh">旗舰作品</span><a class="more" href={`${base}lab/`}>View all →</a></div>
+      <p class="sec-sub">当前最能代表我技术路线的三个研究方向。</p>
+      <div class="feat-grid">
+        {featured.map((p) => {
+          const st = statusMap[p.data.status];
+          const cat = categoryMap[p.data.category];
+          return (
+            <a class="fcard" href={`${base}lab/${p.id}/`}>
+              <span class="no">{String(p.data.order).padStart(2, '0')}</span>
+              <h4>{p.data.title}</h4>
+              <span class="pipe">{p.data.pipeline}</span>
+              <div class="desc">{p.data.summary}</div>
+              <div class="tags">
+                <span class={`badge ${st.cls}`}><i></i>{st.label}</span>
+                <span class="badge b-line">{cat}</span>
+              </div>
+              <div class="read">Read →</div>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="sec-head"><h2>Latest Updates</h2><span class="zh">最新动态</span><a class="more" href={`${base}lab/`}>View Lab →</a></div>
+      <div class="upd-box">
+        {updates.map((u) => (
+          <div class="row"><span class="d">{u.date}</span><span class="p">{u.project}</span><span class="n">{u.note}</span></div>
+        ))}
+      </div>
+    </section>
+  </div>
+</Base>

@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const base = import.meta.env.BASE_URL;
+const notes = (await getCollection('notes')).sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
+
+const catLabel = {
+  'ai-chemistry': 'AI × CHEMISTRY',
+  'ai-engineering': 'AI × ENGINEERING',
+  'experiments': 'EXPERIMENTS',
+  'thinking': 'PERSONAL THINKING',
+};
+---
+
+<Base title="Notes">
+  <div class="narrow" style="max-width:1060px">
+    <h1>Notes</h1>
+    <p class="lead">长期技术资产，不是流量博客。重要文章站内存档，全文可跳转微信公众号。</p>
+
+    <div class="note-grid" style="margin-top:24px">
+      {notes.map((n) => (
+        <a class="ncard" href={`${base}notes/${n.id}/`}>
+          <span class="cat">{catLabel[n.data.category]}</span>
+          <h4>{n.data.title}</h4>
+          <p>{n.body.slice(0, 80).replace(/[#>*\n]/g, ' ').trim()}…</p>
+          <div class="ft"><span>{n.data.date}</span><span>→ 全文</span></div>
+        </a>
+      ))}
+    </div>
+  </div>
+</Base>

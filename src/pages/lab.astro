@@ -1,0 +1,64 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { statusMap, categoryMap } from '../lib/catalog';
+
+const base = import.meta.env.BASE_URL;
+const projects = (await getCollection('projects')).sort((a, b) =>
+  a.data.updated < b.data.updated ? 1 : -1
+);
+---
+
+<Base title="Lab">
+  <div class="page">
+    <div style="padding:56px 0 8px">
+      <h1 style="font-size:40px;font-weight:800;font-family:var(--font-serif)">Lab</h1>
+      <div style="color:var(--ink-2);margin-top:8px;font-size:14.5px"><b>独立实验与开源研究</b> · Independent experiments &amp; open-source studies — 持续迭代中</div>
+    </div>
+
+    <div class="filters">
+      <button data-f="all" class="on">All</button>
+      <button data-f="molecular-ai">Molecular AI</button>
+      <button data-f="reaction-ai">Reaction AI</button>
+      <button data-f="polymer-ai">Polymer AI</button>
+    </div>
+
+    <div id="projList">
+      {projects.map((p) => {
+        const st = statusMap[p.data.status];
+        const cat = categoryMap[p.data.category];
+        return (
+          <a class="pcard" data-cat={p.data.category} href={`${base}lab/${p.id}/`}>
+            <div class="top"><h4>{p.data.title}</h4><span class={`badge ${st.cls}`}><i></i>{st.label}</span></div>
+            <div style="margin-top:10px"><span class="pipe">{p.data.pipeline}</span></div>
+            <div class="meta">
+              <span>Started <b>{p.data.started}</b></span>
+              <span>Updated <b>{p.data.updated}</b></span>
+              <span>Data <b>{p.data.dataSource}</b></span>
+            </div>
+            <div class="desc">{p.data.summary}</div>
+          </a>
+        );
+      })}
+    </div>
+
+    <div style="padding:30px 0 10px;font-size:12.5px;color:var(--ink-3)">未来项目将在此追加：GNN 构效关系专题 · 贝叶斯优化 / 主动学习专题。</div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var btns = document.querySelectorAll('.filters button');
+      var cards = document.querySelectorAll('#projList .pcard');
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          btns.forEach(function (x) { x.classList.remove('on'); });
+          b.classList.add('on');
+          var f = b.getAttribute('data-f');
+          cards.forEach(function (c) {
+            c.style.display = (f === 'all' || c.getAttribute('data-cat') === f) ? '' : 'none';
+          });
+        });
+      });
+    })();
+  </script>
+</Base>
