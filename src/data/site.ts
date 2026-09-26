@@ -17,7 +17,7 @@ export const site = {
 
   // ============ 首页第一屏（大标题区）============
   hero: {
-    tagline: "// PERSONAL AI LAB",              // 姓名上方的小字
+    tagline: "PERSONAL AI LAB",              // 姓名上方的小字
     name: "魏世强",                              // 大标题
     nameEn: "Wiggins",
     role: "Chemical & Materials AI Engineer",   // 头衔
@@ -25,7 +25,7 @@ export const site = {
     posEn: "Building AI systems from molecular structure and physical descriptors to property prediction, screening and intelligent decision-making.", // 定位句（英文）
     btnLab: "Explore Lab →",                    // 主按钮
     btnGithub: "GitHub",                        // 次按钮
-    domains: ["Molecular AI", "Materials AI", "Process AI", "Optimization", "AI Engineering"], // 底部标签
+    domains: ["Molecular AI", "Materials AI", "Process AI", "Optimization", "AI Engineering","chemical Engineering"], // 底部标签
   },
 
   // ============ 首页第二屏（能力地图）============
@@ -45,7 +45,6 @@ export const site = {
   featured: {
     title: "Featured Lab",
     titleZh: "旗舰作品",
-    subtitle: "当前最能代表我技术路线的三个研究方向。",
     viewAll: "View all →",
   },
 
@@ -62,19 +61,17 @@ export const site = {
     subtitleZh: "独立实验与开源研究",
     subtitle: "Independent experiments & open-source studies — 持续迭代中",
     filters: ["All", "Molecular AI", "Reaction AI", "Polymer AI"],
-    footerNote: "未来项目将在此追加：GNN 构效关系专题 · 贝叶斯优化 / 主动学习专题。",
+    footerNote: "未来项目将在此追加：GNN 构效关系 / 贝叶斯优化 / 时序建模。",
   },
 
   // ============ Notes 页 ============
   notes: {
     title: "Notes",
-    subtitle: "长期技术资产，不是流量博客。重要文章站内存档，全文可跳转微信公众号。",
   },
 
   // ============ Methods 页（六板块）============
   methods: {
     title: "Engineering AI Methods",
-    subtitle: "我怎么把化工问题变成 AI 问题 —— 公开我的技术思维框架。点击每个板块展开全文。",
     sections: [
       {
         n: "§ 1",
@@ -147,7 +144,6 @@ export const site = {
           "<b>给世界看</b> → Hugging Face Spaces + Gradio，零运维公开 Demo。",
           "<b>上线后</b> → 跟踪预测分布漂移、定期回测、建立再训练机制。",
         ],
-        outro: "本站所有 Demo 走 HF Spaces——网站（Astro 静态）与计算（Gradio）解耦。",
       },
     ],
   },
@@ -155,7 +151,7 @@ export const site = {
   // ============ About 页 ============
   about: {
     title: "About",
-    lead: "化工与材料背景的 AI 工程师。擅长把化工问题翻译成 AI 问题：从分子/材料表征、构效关系建模，到筛选、优化与部署的完整链路。这个网站是我个人技术能力的公开实验场。",
+    lead: "化工与材料背景的 AI 工程师。擅长把化工问题翻译成 AI 问题：从分子/材料表征、构效关系建模，到筛选、优化与部署的完整链路。",
     experience: [
       {
         role: "国内某头部化工企业 · 研发工程师",
@@ -189,9 +185,9 @@ export const site = {
   // ============ 页脚 ============
   footer: {
     slogan: "Building AI systems from molecular structure and physical descriptors to property prediction, screening and intelligent decision-making.",
-    github: "GitHub",
-    wechat: "微信公众号",
-    email: "Email",
+    github: "GitHub:https://github.com/wsqs-hub",
+    wechat: "微信公众号:AI+化工与材料智能实践",
+    email: "Email:2592123736@qq.com",
     disclaimer: "Disclaimer",
     copyright: "© 2026 Weishiqiang",
     builtWith: "Built with Astro · Deployed on GitHub Pages",
